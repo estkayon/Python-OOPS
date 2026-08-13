@@ -1,17 +1,35 @@
 class nonebook:
 
+    __user_id = 1
 
     def __init__(self):
-
+        self.id = nonebook.__user_id
+        nonebook.__user_id += 1
+        self.__name = "Default User"
         self.username = ''
         self.password = ''
         self.loggedin = False
-        self.menu()
+        # self.menu()
 
+    @staticmethod
+    def get_id():
+        return nonebook.__user_id
+    
+    @staticmethod
+    def set_id(val):
+        nonebook.__user_id = val
+
+
+    def get_name(self):
+        return self.__name
+    
+
+    def set_name(self, value):
+        self.__name = value
 
 
     def menu(self):
-        user_input = input(""""Welcome to Nonebook !! How would you like to proceed?
+        user_input = input(""""Welcome to nonebook !! How would you like to proceed?
                            1. Press 1 to signup
                            2. Press 2 to signin
                            3. Press 3 to write a post
@@ -73,6 +91,5 @@ class nonebook:
         print("\n")
         self.menu()
 
-# user = nonebook()
 
-
+# user1 = chatbook()

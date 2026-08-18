@@ -89,38 +89,75 @@
 # Multiple Inheritance (Diamond Problem)
 
 # Common base class
-class A:
+# class A:
+#     def __init__(self, name):
+#         self.name = name
+
+#     def greet(self):
+#         print(f"Hello from A, {self.name}.")
+
+# # Intermediate class 1
+# class B(A):
+
+#     def greet(self):
+#         print(f"Hello from B, {self.name}.")
+#         super().greet()
+
+# # Intermediate class 2
+# class C(A):
+#     def greet(self):
+#         print(f"Hello from C, {self.name}.")
+#         super().greet()
+
+# # Derived class
+# class D(B, C):
+
+#     def greet(self):
+#         print(f"Hello from D, {self.name}.")
+#         super().greet()
+
+# # Create an instance of D
+# d = D("Frank")
+# d.greet()
+# Output:
+# Hello from D, Frank.
+# Hello from B, Frank.
+# Hello from C, Frank.
+# Hello from A, Frank.
+
+# ------------------------------------------------------------
+
+# Hybrid Inheritance
+
+# Base class
+class Animal:
     def __init__(self, name):
         self.name = name
 
-    def greet(self):
-        print(f"Hello from A, {self.name}.")
+    def sound(self):
+        print(f"{self.name} makes a sound.")
 
-# Intermediate class 1
-class B(A):
+# Intermediate class 1 (Hierarchical)
+class Mammal(Animal):
+    def feed(self):
+        print(f"{self.name} is feeding milk.")
 
-    def greet(self):
-        print(f"Hello from B, {self.name}.")
-        super().greet()
+# Intermediate class 2 (Multiple)
+class Bird(Animal):
+    def fly(self):
+        print(f"{self.name} is flying.")
 
-# Intermediate class 2
-class C(A):
-    def greet(self):
-        print(f"Hello from C, {self.name}.")
-        super().greet()
+# Derived class (Multiple Inheritance)
+class Bat(Mammal, Bird):
+    def __init__(self, name):
+        Mammal.__init__(self, name)  # Explicitly calling the constructor
 
-# Derived class
-class D(B, C):
+    def nocturnal(self):
+        print(f"{self.name} is nocturnal.")
 
-    def greet(self):
-        print(f"Hello from D, {self.name}.")
-        super().greet()
-
-# Create an instance of D
-d = D("Frank")
-d.greet()
-# # Output:
-# # Hello from D, Frank.
-# # Hello from B, Frank.
-# # Hello from C, Frank.
-# Hello from A, Frank.
+# Create an instance of Bat
+bat = Bat("Bruce")
+bat.sound()     # Output: Bruce makes a sound.
+bat.feed()      # Output: Bruce is feeding milk.
+bat.fly()       # Output: Bruce is flying.
+bat.nocturnal() # Output: Bruce is nocturnal.

@@ -55,33 +55,72 @@
 # Hierarchical Inheritance
 
 # Base class
-class Parent:
+# class Parent:
+#     def __init__(self, name):
+#         self.name = name
+
+#     def greet(self):
+#         print(f"Hello, my name is {self.name}.")
+
+# # Derived class 1
+# class Child1(Parent):
+
+#     def play(self):
+#         print(f"{self.name} is playing.")
+
+# # Derived class 2
+# class Child2(Parent):
+
+#     def study(self):
+#         print(f"{self.name} is studying.")
+
+# # Create instances of Child1 and Child2
+# child1 = Child1("Dave")
+# child2 = Child2("Eve")
+
+# child1.greet()  # Output: Hello, my name is Dave.
+# child1.play()   # Output: Dave is playing.
+
+# child2.greet()  # Output: Hello, my name is Eve.
+# child2.study()  # Output: Eve is studying.
+
+# ------------------------------------------------------------
+
+# Multiple Inheritance (Diamond Problem)
+
+# Common base class
+class A:
     def __init__(self, name):
         self.name = name
 
     def greet(self):
-        print(f"Hello, my name is {self.name}.")
+        print(f"Hello from A, {self.name}.")
 
-# Derived class 1
-class Child1(Parent):
+# Intermediate class 1
+class B(A):
 
-    def play(self):
-        print(f"{self.name} is playing.")
+    def greet(self):
+        print(f"Hello from B, {self.name}.")
+        super().greet()
 
-# Derived class 2
-class Child2(Parent):
+# Intermediate class 2
+class C(A):
+    def greet(self):
+        print(f"Hello from C, {self.name}.")
+        super().greet()
 
-    def study(self):
-        print(f"{self.name} is studying.")
+# Derived class
+class D(B, C):
 
-# Create instances of Child1 and Child2
-child1 = Child1("Dave")
-child2 = Child2("Eve")
+    def greet(self):
+        print(f"Hello from D, {self.name}.")
+        super().greet()
 
-child1.greet()  # Output: Hello, my name is Dave.
-child1.play()   # Output: Dave is playing.
-
-child2.greet()  # Output: Hello, my name is Eve.
-child2.study()  # Output: Eve is studying.
-
-# ------------------------------------------------------------
+# Create an instance of D
+d = D("Frank")
+d.greet()
+# # Output:
+# # Hello from D, Frank.
+# # Hello from B, Frank.
+# # Hello from C, Frank.
+# Hello from A, Frank.
